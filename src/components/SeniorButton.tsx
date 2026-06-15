@@ -22,6 +22,7 @@ interface SeniorButtonProps {
   disabled?: boolean;
   loading?: boolean;
   style?: ViewStyle;
+  accessibilityHint?: string;
 }
 
 const HEIGHT: Record<Size, number> = { large: 72, xl: 96 };
@@ -48,6 +49,7 @@ export default function SeniorButton({
   disabled = false,
   loading = false,
   style,
+  accessibilityHint,
 }: SeniorButtonProps) {
   const height = HEIGHT[size];
   const fontSize = FONT_SIZE[size];
@@ -68,6 +70,7 @@ export default function SeniorButton({
       activeOpacity={0.75}
       accessibilityLabel={label}
       accessibilityRole="button"
+      accessibilityHint={accessibilityHint}
       accessibilityState={{ disabled: disabled || loading }}
       style={[
         styles.base,

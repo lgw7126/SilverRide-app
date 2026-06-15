@@ -86,7 +86,7 @@ function GridCard({ place, onPress }: GridCardProps) {
       style={[styles.gridCard, { borderColor: `${accent}40` }]}
     >
       <View style={[styles.gridIconBg, { backgroundColor: `${accent}18` }]}>
-        <Text style={styles.gridIcon}>{place.icon}</Text>
+        <Text style={styles.gridIcon} accessibilityElementsHidden={true} importantForAccessibility="no">{place.icon}</Text>
       </View>
       <Text style={styles.gridLabel} numberOfLines={1}>
         {place.label}
@@ -231,8 +231,8 @@ export default function HomeScreen() {
             안녕하세요, {userName}님
           </Text>
           {familyLinked && (
-            <View style={styles.familyBadge}>
-              <Text style={styles.familyBadgeText}>🟢 가족 연동 중</Text>
+            <View style={styles.familyBadge} accessibilityLabel="가족 연동 중" accessibilityRole="text">
+              <Text style={styles.familyBadgeText} accessibilityElementsHidden={true} importantForAccessibility="no">🟢 가족 연동 중</Text>
             </View>
           )}
         </View>
@@ -310,6 +310,7 @@ export default function HomeScreen() {
             size="large"
             icon="📞"
             style={styles.bottomBtn}
+            accessibilityHint="누르면 콜센터에 전화가 연결됩니다"
           />
         </View>
       </View>

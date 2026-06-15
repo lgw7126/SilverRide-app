@@ -176,8 +176,12 @@ export default function WaitingScreen({ navigation }: Props) {
         ) : (
           /* 기사 배정 완료 */
           <View style={styles.driverSection}>
-            <View style={styles.driverFoundBanner}>
-              <Text style={styles.driverFoundText}>
+            <View
+              style={styles.driverFoundBanner}
+              accessibilityLabel={strings.waiting.driverFound}
+              accessibilityRole="text"
+            >
+              <Text style={styles.driverFoundText} accessibilityElementsHidden={true} importantForAccessibility="no">
                 ✅  {strings.waiting.driverFound}
               </Text>
             </View>
@@ -189,10 +193,13 @@ export default function WaitingScreen({ navigation }: Props) {
                 </View>
                 <View style={styles.driverMeta}>
                   <Text style={styles.driverName}>{MOCK_DRIVER.name} 기사님</Text>
-                  <Text style={styles.driverRating}>⭐ {MOCK_DRIVER.rating}점</Text>
+                  <Text
+                    style={styles.driverRating}
+                    accessibilityLabel={`별점 ${MOCK_DRIVER.rating}점`}
+                  >⭐ {MOCK_DRIVER.rating}점</Text>
                   {MOCK_DRIVER.isFavorite && (
-                    <View style={styles.favoriteBadge}>
-                      <Text style={styles.favoriteBadgeText}>❤️ 단골 기사님</Text>
+                    <View style={styles.favoriteBadge} accessibilityLabel="단골 기사님" accessibilityRole="text">
+                      <Text style={styles.favoriteBadgeText} accessibilityElementsHidden={true} importantForAccessibility="no">❤️ 단골 기사님</Text>
                     </View>
                   )}
                 </View>

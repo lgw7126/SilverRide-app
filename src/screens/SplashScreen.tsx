@@ -12,13 +12,13 @@ export default function SplashScreen() {
   const navigation = useNavigation<Nav>();
 
   useEffect(() => {
-    const t = setTimeout(() => navigation.replace('ComponentTest'), 2000);
+    const t = setTimeout(() => navigation.replace('Onboarding'), 2000);
     return () => clearTimeout(t);
   }, [navigation]);
 
   return (
     <View style={styles.container}>
-      <Text style={styles.logo}>🚕</Text>
+      <Text style={styles.logo} accessibilityElementsHidden={true} importantForAccessibility="no">🚕</Text>
       <Text style={styles.title}>SilverRide</Text>
       <Text style={styles.subtitle}>어르신을 위한 편안한 택시</Text>
     </View>

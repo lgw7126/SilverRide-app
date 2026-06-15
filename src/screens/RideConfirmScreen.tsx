@@ -171,6 +171,7 @@ export default function RideConfirmScreen({ navigation, route }: Props) {
           icon="🚕"
           onPress={handleCall}
           style={styles.callBtn}
+          accessibilityHint="누르면 택시 호출이 시작됩니다"
         />
         <SeniorButton
           label={strings.cancel}

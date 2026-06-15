@@ -1,23 +1,59 @@
 {
   "expo": {
-    "name": "SilverRide",
+    "name": "실버라이드",
     "slug": "silver-ride",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
+    "splash": {
+      "backgroundColor": "#1F4E79"
+    },
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": false,
+      "bundleIdentifier": "com.silverride.app",
+      "infoPlist": {
+        "NSLocationWhenInUseUsageDescription": "택시 호출을 위해 현재 위치가 필요합니다.",
+        "NSLocationAlwaysUsageDescription": "이동 중 가족 알림을 위해 위치 권한이 필요합니다.",
+        "NSMicrophoneUsageDescription": "음성으로 목적지를 말씀하실 때 마이크가 필요합니다.",
+        "NSSpeechRecognitionUsageDescription": "음성 인식으로 목적지를 입력할 때 필요합니다.",
+        "NSCameraUsageDescription": "프로필 사진 등록에 카메라가 필요합니다."
+      }
     },
     "android": {
+      "package": "com.silverride.app",
       "adaptiveIcon": {
         "backgroundColor": "#1F4E79",
         "foregroundImage": "./assets/android-icon-foreground.png"
       },
-      "predictiveBackGestureEnabled": false
+      "predictiveBackGestureEnabled": false,
+      "permissions": [
+        "ACCESS_FINE_LOCATION",
+        "ACCESS_COARSE_LOCATION",
+        "ACCESS_BACKGROUND_LOCATION",
+        "RECORD_AUDIO",
+        "CAMERA",
+        "RECEIVE_BOOT_COMPLETED",
+        "VIBRATE"
+      ]
     },
+    "plugins": [
+      "expo-location",
+      "expo-notifications",
+      [
+        "expo-sensors",
+        {
+          "motionPermission": "낙상 감지를 위해 가속도 센서에 접근합니다."
+        }
+      ]
+    ],
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "silver-ride"
+      }
     }
   }
 }
