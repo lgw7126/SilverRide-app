@@ -3,6 +3,8 @@ import * as Speech from 'expo-speech';
 const DEFAULT_RATE = 0.85;
 const SLOW_RATE = 0.65;
 
+let slowModeEnabled = false;
+
 const koOptions = (rate: number): Speech.SpeechOptions => ({
   language: 'ko-KR',
   rate,
@@ -10,9 +12,14 @@ const koOptions = (rate: number): Speech.SpeechOptions => ({
 });
 
 export const ttsService = {
-  speak(text: string, rate: number = DEFAULT_RATE): void {
+  setSlowMode(enabled: boolean): void {
+    slowModeEnabled = enabled;
+  },
+
+  speak(text: string, rate?: number): void {
+    const resolvedRate = rate ?? (slowModeEnabled ? SLOW_RATE : DEFAULT_RATE);
     Speech.stop();
-    Speech.speak(text, koOptions(rate));
+    Speech.speak(text, koOptions(resolvedRate));
   },
 
   speakSlowly(text: string): void {
