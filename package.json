@@ -1,0 +1,37 @@
+{
+  "name": "silver-ride",
+  "version": "1.0.0",
+  "main": "index.ts",
+  "dependencies": {
+    "@react-native-async-storage/async-storage": "^3.1.1",
+    "@react-navigation/bottom-tabs": "^7.18.2",
+    "@react-navigation/native": "^7.3.3",
+    "@react-navigation/stack": "^7.10.5",
+    "expo": "~56.0.11",
+    "expo-av": "^16.0.8",
+    "expo-linear-gradient": "^56.0.4",
+    "expo-location": "^56.0.17",
+    "expo-notifications": "^56.0.17",
+    "expo-speech": "^56.0.3",
+    "expo-status-bar": "~56.0.4",
+    "firebase": "^12.14.0",
+    "react": "19.2.3",
+    "react-native": "0.85.3",
+    "react-native-gesture-handler": "^3.0.1",
+    "react-native-maps": "^1.27.2",
+    "react-native-safe-area-context": "^5.8.0",
+    "react-native-screens": "^4.25.2",
+    "zustand": "^5.0.14"
+  },
+  "devDependencies": {
+    "@types/react": "~19.2.2",
+    "typescript": "~6.0.3"
+  },
+  "scripts": {
+    "start": "expo start",
+    "android": "expo start --android",
+    "ios": "expo start --ios",
+    "web": "expo start --web"
+  },
+  "private": true
+}
