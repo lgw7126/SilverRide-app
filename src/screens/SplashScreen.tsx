@@ -1,9 +1,21 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+import { StackNavigationProp } from '@react-navigation/stack';
+import { RootStackParamList } from '../navigation/AppNavigator';
 import { colors } from '../constants/colors';
 import { typography } from '../constants/typography';
 
+type Nav = StackNavigationProp<RootStackParamList, 'Splash'>;
+
 export default function SplashScreen() {
+  const navigation = useNavigation<Nav>();
+
+  useEffect(() => {
+    const t = setTimeout(() => navigation.replace('ComponentTest'), 2000);
+    return () => clearTimeout(t);
+  }, [navigation]);
+
   return (
     <View style={styles.container}>
       <Text style={styles.logo}>🚕</Text>
