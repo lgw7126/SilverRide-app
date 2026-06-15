@@ -18,6 +18,7 @@ import { RootStackParamList } from '../navigation/AppNavigator';
 import { ttsService } from '../services/ttsService';
 import { locationService } from '../services/locationService';
 import { emergencyService } from '../services/emergencyService';
+import { dementiaGuardService } from '../services/dementiaGuardService';
 import { useRideStore, FavoritePlace } from '../stores/rideStore';
 import SOSButton from '../components/SOSButton';
 import SeniorButton from '../components/SeniorButton';
@@ -103,6 +104,7 @@ export default function HomeScreen() {
 
   const {
     currentLocation,
+    destination,
     favoriteList,
     familyLinked,
     userName,
@@ -152,15 +154,47 @@ export default function HomeScreen() {
     if (ttsSpoken.current) return;
     ttsSpoken.current = true;
     const t = setTimeout(() => {
-      ttsService.speak(`안녕하세요, ${userName}님. 어디로 가실까요? 아래 버튼을 눈러 택시를 부르세요.`);
+      ttsService.speak(`안녕하세요, ${userName}님. 어디로 가실까요? 아래 버튼을 눌러 택시를 부르세요.`);
     }, 1800);
     return () => clearTimeout(t);
   }, [userName]);
 
-  const handleSOS = useCallback(async () => {
-    await emergencyService.activateSOS();
-    navigation.navigate('Emergency');
+  // 낙상 감지 자동 실행 (HomeScreen 마운트 시 시작)
+  useEffect(() => {
+    const onFallDetected = (cancelFn: () => void) => {
+      Alert.alert(
+        '🔴 낙상이 감지되었습니다',
+        '괜찮으시면 아래 버튼을 눌러 주세요.\n30초 후 자동으로 긴급 신호를 보냅니다.',
+        [{ text: '괜찮아요', style: 'cancel', onPress: cancelFn }],
+        { cancelable: false }
+      );
+    };
+    const onSOSRequired = () => navigation.navigate('Emergency');
+
+    emergencyService.startFallDetection(onFallDetected, onSOSRequired);
+    return () => emergencyService.stopFallDetection();
   }, [navigation]);
+
+  // 목적지 설정 시 치매 안심 모드 자동 시작
+  useEffect(() => {
+    if (!destination) return;
+    void dementiaGuardService.startMonitoring(
+      destination.label,
+      destination.latitude != null && destination.longitude != null
+        ? { latitude: destination.latitude, longitude: destination.longitude }
+        : undefined
+    );
+    return () => { dementiaGuardService.stopMonitoring(); };
+  }, [destination]);
+
+  const handleSOS = useCallback(async () => {
+    await emergencyService.triggerSOS(
+      currentLocation
+        ? { latitude: currentLocation.coords.latitude, longitude: currentLocation.coords.longitude }
+        : undefined
+    );
+    navigation.navigate('Emergency');
+  }, [navigation, currentLocation]);
 
   const handleFavTap = useCallback(
     (place: FavoritePlace | null) => {
