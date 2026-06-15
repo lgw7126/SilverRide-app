@@ -287,21 +287,31 @@ export default function HomeScreen() {
 
       <View style={[styles.bottomBar, { paddingBottom: Math.max(insets.bottom, 8) }]}>
         <SeniorButton
-          label="다른 곳 가기"
-          onPress={() => navigation.navigate('Destination')}
-          variant="secondary"
-          size="large"
-          icon="🗺️"
-          style={styles.bottomBtn}
-        />
-        <SeniorButton
-          label="전화로 부르기"
-          onPress={() => Linking.openURL(CALL_CENTER)}
+          label="말로 부르기"
+          onPress={() => navigation.navigate('VoiceOnly')}
           variant="primary"
           size="large"
-          icon="📞"
-          style={styles.bottomBtn}
+          icon="🎤"
+          style={{ flex: 1, backgroundColor: colors.accent }}
         />
+        <View style={styles.bottomRow}>
+          <SeniorButton
+            label="다른 곳 가기"
+            onPress={() => navigation.navigate('Destination')}
+            variant="secondary"
+            size="large"
+            icon="🗺️"
+            style={styles.bottomBtn}
+          />
+          <SeniorButton
+            label="전화로 부르기"
+            onPress={() => Linking.openURL(CALL_CENTER)}
+            variant="primary"
+            size="large"
+            icon="📞"
+            style={styles.bottomBtn}
+          />
+        </View>
       </View>
     </View>
   );
@@ -389,14 +399,17 @@ const styles = StyleSheet.create({
   gridEmptyPlus: { fontSize: 32, color: colors.textSecondary, fontWeight: typography.fontWeightBold },
   gridEmptyLabel: { fontSize: typography.bodyMin, color: colors.textSecondary, fontWeight: typography.fontWeightBold },
   bottomBar: {
-    flex: 10,
-    flexDirection: 'row',
+    flexDirection: 'column',
     paddingHorizontal: 16,
     paddingTop: 8,
-    gap: 12,
+    gap: 8,
     borderTopWidth: 1,
     borderTopColor: colors.border,
     backgroundColor: colors.background,
+  },
+  bottomRow: {
+    flexDirection: 'row',
+    gap: 12,
   },
   bottomBtn: { flex: 1 },
 });

@@ -17,6 +17,7 @@ import MyPageScreen from '../screens/MyPageScreen';
 import FamilyLinkScreen from '../screens/FamilyLinkScreen';
 import FamilyMonitorScreen from '../screens/FamilyMonitorScreen';
 import EmergencyScreen from '../screens/EmergencyScreen';
+import VoiceOnlyScreen from '../screens/VoiceOnlyScreen';
 import ComponentTestScreen from '../screens/ComponentTestScreen';
 import { colors } from '../constants/colors';
 import { typography } from '../constants/typography';
@@ -34,6 +35,7 @@ export type RootStackParamList = {
   FamilyLink: undefined;
   FamilyMonitor: undefined;
   Emergency: undefined;
+  VoiceOnly: undefined;
   ComponentTest: undefined;
 };
 
@@ -103,6 +105,7 @@ export default function AppNavigator() {
         <Stack.Screen name="FamilyLink" component={FamilyLinkScreen} options={{ title: '보호자 연동' }} />
         <Stack.Screen name="FamilyMonitor" component={FamilyMonitorScreen} options={{ title: '위치 모니터링' }} />
         <Stack.Screen name="Emergency" component={EmergencyScreen} options={{ headerShown: false }} />
+        <Stack.Screen name="VoiceOnly" component={VoiceOnlyScreen} options={{ headerShown: false }} />
         <Stack.Screen name="ComponentTest" component={ComponentTestScreen} options={{ title: '컴포넌트 테스트' }} />
       </Stack.Navigator>
     </NavigationContainer>
