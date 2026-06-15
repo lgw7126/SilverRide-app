@@ -2,6 +2,43 @@
 
 어르신을 위한 편안한 택시 앱 — 60세 이상 시니어와 그 가족을 위한 React Native 앱입니다.
 
+<p align="center">
+  <a href="https://expo.dev/go?snack=silver-ride" target="_blank">
+    <img src="https://img.shields.io/badge/▶%20Expo%20Go로%20실행-000020?style=for-the-badge&logo=expo&logoColor=white" alt="Expo Go로 실행" />
+  </a>
+  &nbsp;
+  <a href="https://github.com/lgw7126/silverride-app" target="_blank">
+    <img src="https://img.shields.io/badge/GitHub-소스코드-181717?style=for-the-badge&logo=github&logoColor=white" alt="GitHub 소스코드" />
+  </a>
+  &nbsp;
+  <img src="https://img.shields.io/badge/버전-1.0.0-1F4E79?style=for-the-badge" alt="버전 1.0.0" />
+  &nbsp;
+  <img src="https://img.shields.io/badge/React%20Native-Expo%20SDK%2056-61DAFB?style=for-the-badge&logo=react&logoColor=white" alt="React Native Expo" />
+</p>
+
+---
+
+## 빠른 실행
+
+```bash
+# 1. 저장소 클론
+git clone https://github.com/lgw7126/silverride-app.git
+cd silverride-app
+
+# 2. 의존성 설치
+npm install
+
+# 3. 개발 서버 실행 (QR 코드 → Expo Go 앱으로 스캔)
+npx expo start
+```
+
+> **Expo Go 앱**을 스마트폰에 설치하고 터미널의 QR 코드를 스캔하면 바로 실행됩니다.
+>
+> - iOS: [App Store에서 Expo Go 설치](https://apps.apple.com/app/expo-go/id982107779)
+> - Android: [Google Play에서 Expo Go 설치](https://play.google.com/store/apps/details?id=host.exp.exponent)
+
+---
+
 ## 특징
 
 - **초대형 UI**: 최소 버튼 높이 72px, 글씨 크기 18sp 이상
@@ -26,16 +63,10 @@
 | 인증 | Firebase Auth (전화번호) |
 | 저장소 | AsyncStorage + Firebase Firestore |
 
-## 시작하기
+## 시뮬레이터 실행
 
 ```bash
-# 의존성 설치
-npm install
-
-# 개발 서버 실행
-npx expo start
-
-# iOS 시뮬레이터
+# iOS 시뮬레이터 (macOS 전용)
 npx expo run:ios
 
 # Android 에뮬레이터
