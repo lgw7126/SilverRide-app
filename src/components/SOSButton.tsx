@@ -5,6 +5,7 @@ import {
   StyleSheet,
   Animated,
   View,
+  ViewStyle,
 } from 'react-native';
 import * as Haptics from 'expo-haptics';
 import { ttsService } from '../services/ttsService';
@@ -13,12 +14,19 @@ import { typography } from '../constants/typography';
 
 interface SOSButtonProps {
   onActivate: () => void;
+  /** inline: 절대 위치 없이 일반 흐름에 배치 (헤더 등에 삽입 시 사용) */
+  mode?: 'fixed' | 'inline';
+  wrapperStyle?: ViewStyle;
 }
 
 const HOLD_DURATION = 3000;
 const TICK_INTERVAL = 1000;
 
-export default function SOSButton({ onActivate }: SOSButtonProps) {
+export default function SOSButton({
+  onActivate,
+  mode = 'fixed',
+  wrapperStyle,
+}: SOSButtonProps) {
   const [countdown, setCountdown] = useState<number | null>(null);
   const holdTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const tickTimer = useRef<ReturnType<typeof setInterval> | null>(null);
@@ -78,8 +86,10 @@ export default function SOSButton({ onActivate }: SOSButtonProps) {
     setCountdown(null);
   }, [clearTimers]);
 
+  const fixedStyle = mode === 'fixed' ? styles.fixedPosition : undefined;
+
   return (
-    <Animated.View style={[styles.wrapper, { transform: [{ scale: scaleAnim }] }]}>
+    <Animated.View style={[styles.wrapper, fixedStyle, wrapperStyle, { transform: [{ scale: scaleAnim }] }]}>
       <TouchableOpacity
         onPressIn={handlePressIn}
         onPressOut={handlePressOut}
@@ -103,9 +113,6 @@ export default function SOSButton({ onActivate }: SOSButtonProps) {
 
 const styles = StyleSheet.create({
   wrapper: {
-    position: 'absolute',
-    bottom: 32,
-    right: 24,
     width: 80,
     height: 80,
     borderRadius: 40,
@@ -114,6 +121,11 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.45,
     shadowRadius: 8,
     elevation: 10,
+  },
+  fixedPosition: {
+    position: 'absolute',
+    bottom: 32,
+    right: 24,
   },
   button: {
     width: 80,
