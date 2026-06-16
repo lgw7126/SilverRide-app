@@ -23,8 +23,7 @@
     "android": {
       "package": "com.silverride.app",
       "adaptiveIcon": {
-        "backgroundColor": "#1F4E79",
-        "foregroundImage": "./assets/android-icon-foreground.png"
+        "backgroundColor": "#1F4E79"
       },
       "predictiveBackGestureEnabled": false,
       "permissions": [
